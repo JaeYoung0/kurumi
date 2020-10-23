@@ -459,7 +459,7 @@ dispatch({
                     href={`/user/${post.User.id}`}>
                       <a><Avatar
                       src={
-                        // mainPosts.length !== 0 ? `http://localhost:3065/${item.User.Image.src}` : `http://localhost:3065/${singlePost.User.Image.src}`
+                        
                         `${item.User.Image.src}`
                         }  
                       ></Avatar></a>

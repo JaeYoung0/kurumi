@@ -7,6 +7,7 @@ import {
     REMOVE_IMAGE,
     ADD_POST_REQUEST,
   } from "../reducers/post";
+  import {backUrl} from '../config/config'
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -88,7 +89,7 @@ const PicturesWall = ({text})=> {
     return (
       <>
         <Upload
-          action="http://localhost:3065/post/images"
+          action={`${backUrl}/post/images`}
           listType="picture-card"
           fileList={fileList}
           onPreview={handlePreview}

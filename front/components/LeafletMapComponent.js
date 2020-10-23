@@ -21,7 +21,7 @@ import { SearchControl,OpenStreetMapProvider } from 'leaflet-geosearch';
 import * as GeoSearch from 'leaflet-geosearch';
 import MarkerClusterGroup from "react-leaflet-markercluster";
 
-
+import {backUrl} from '../config/config'
 
 
 
@@ -233,11 +233,7 @@ const LeafletMapComponent = ()=> {
   setLng(newPos.lng)  
   })
   marker.bindPopup(`..`,{closeButton:false})
-  // marker.getElement().insertAdjacentHTML('afterend',imagePaths.map((v)=>
-  //   `
-  //   <img key={v.key[0]} src={http://localhost:3065/${v.image[0]}}></img>
-  //   `
-  // ))
+  
   console.log(marker)
 
 
@@ -245,12 +241,7 @@ const LeafletMapComponent = ()=> {
 
   setCountCloud(countCloud+1)
   console.log(`지금 구름 갯수는 ${countCloud}개입니다.`)
-{/* <img
-          role="presentation"
-          src={`http://localhost:3065/${images[0].src}`}
-          alt={`http://localhost:3065/${images[0].src}`}
-          onClick={onZoom}
-        /> */}
+
   
 
 },[currentPos, content])
@@ -368,7 +359,7 @@ const loadMyLeaf = useCallback(()=>{
                 
                 <a onClick={goToPost(leaf)}>
                   <img 
-                  src={`http://localhost:3065/${leaf.Images[0]?.src}`} 
+                  src={`${backUrl}/${leaf.Images[0]?.src}`} 
                   style={{width:'100px'}}
                   ></img>
                 </a>

@@ -4,7 +4,7 @@ import { Avatar, Card } from "antd";
 import { END } from "redux-saga";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
+import {backUrl} from '../../config/config'
 import axios from "axios";
 import { LOAD_USER_POSTS_REQUEST } from "../../reducers/post";
 import { LOAD_MY_INFO_REQUEST, LOAD_USER_REQUEST } from "../../reducers/user";
@@ -104,7 +104,7 @@ const User = () => {
           <Card.Meta
             avatar={<Avatar
               size={40}
-                    src={`http://localhost:3065/${userInfo.Image.src}`}
+                    src={`${backUrl}/${userInfo.Image.src}`}
             ></Avatar>}
             title={userInfo.nickname}
           />

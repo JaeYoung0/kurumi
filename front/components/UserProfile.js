@@ -13,7 +13,7 @@ import {UserOutlined,LeftOutlined} from '@ant-design/icons'
 import UploadImages from './UploadImages';
 import FollowList from '../components/FollowList'
 import useSWR from 'swr'
-
+import {backUrl} from '../config/config'
 import axios from 'axios'
 
 const fetcher = (url) => axios.get(url, {withCredentials:true})
@@ -38,7 +38,7 @@ const UserProfile = () => {
   const loadMoreFollowings = useCallback(()=>{
     setFollowingsLimit((prev)=>prev+3)
   })
-  const {data:followingsData, error:followingError} = useSWR(`http://localhost:3065/user/followings?limit=${followingsLimit}`, fetcher)
+  const {data:followingsData, error:followingError} = useSWR(`${backUrl}/user/followings?limit=${followingsLimit}`, fetcher)
 
 
   const [followerVisible, setFollowerVisible] = useState(false);
@@ -53,7 +53,7 @@ const UserProfile = () => {
   const loadMoreFollowers = useCallback(()=>{
     setFollowersLimit((prev)=>prev+3)
   })
-  const {data:followersData, error:followerError} = useSWR(`http://localhost:3065/user/followers?limit=${followersLimit}`, fetcher)
+  const {data:followersData, error:followerError} = useSWR(`${backUrl}/user/followers?limit=${followersLimit}`, fetcher)
 
   const [StatusVisible, setStatusVisible] = useState(false)
   const showStatus = useCallback(()=>{

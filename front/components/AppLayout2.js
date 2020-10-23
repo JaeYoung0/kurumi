@@ -122,41 +122,7 @@ useEffect(() => {
           // style={{background:'#001529'}}
           bodyStyle={{background:'#001529'}}
           >
-          {/* {me !== null ?
-            <>
-            <Card>
-              <Card.Meta
-              avatar={<Avatar
-                      size={50}
-                      src={`http://localhost:3065/${me.Image?.src}`}
-                      />}
-              title='title'
-              description="des"
-              />
-              
-            </Card>          
-            </>
-
-          :<>
-            <Card>
-              <Card.Meta 
-              avatar={<Avatar
-                      size={50}
-                      >
-                      {<UserOutlined style={{fontSize:20}} />}
-                      </Avatar>}
-              title='title'
-              description="des"
-              actions={[
-                <LogoutOutlined /> 
-              ]}
-              />
-            </Card>
-          </>
           
-          
-          
-          } */}
           
             <Menu 
             mode= 'vertical' 

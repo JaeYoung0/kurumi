@@ -7,6 +7,7 @@ import {
   } from "../reducers/post";
 import { useSelector, useDispatch } from "react-redux";
 import { Upload, Modal } from "antd";
+import {backUrl} from '../config/config'
 
 const UploadImages = () => {
 
@@ -94,7 +95,7 @@ const UploadImages = () => {
     return (
         <>
         <Upload
-            action="http://localhost:3065/post/images"
+            action={`${backUrl}/post/images`}
             listType="picture-card"
             fileList={fileList}
             onRemove={onRemoveImage}

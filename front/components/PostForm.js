@@ -162,7 +162,8 @@ const getBase64 = (file)=>{
       
       {/* <PicturesWall text={text} /> */}
       <Upload
-          action="http://localhost:3065/post/images"
+      
+          action={`${backUrl}/post/images`}
           listType="picture-card"
           fileList={fileList}
           onRemove={onRemoveImage}

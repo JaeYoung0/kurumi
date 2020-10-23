@@ -6,6 +6,7 @@ import ImagesZoom from "../components/imagesZoom";
 import {Carousel} from 'antd'
 import Slider from "react-slick";
 import styled from 'styled-components'
+import {backUrl} from '../config/config'
 
 const SliderStyled = styled(Slider)`
 .slick-dots{
@@ -45,8 +46,8 @@ const PostImages = ({ images }) => {
           <img
               style={{width:'100%'}}
               role="presentation"
-              src={`http://localhost:3065/${v.src}`}
-              alt={`http://localhost:3065/${v.src}`}
+              src={`${backUrl}/${v.src}`}
+              alt={`${backUrl}/${v.src}`}
               // onClick={onZoom}
             />
           </div>

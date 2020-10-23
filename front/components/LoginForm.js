@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginRequestAction } from "../reducers/user";
 
 import useInput from "../hooks/useinput";
-import Axios from 'axios';
+
+import {backUrl} from '../config/config'
 
 // 다음엔 리액트 라이브러리 Form으로 간단하게 해결해보기
 // 스타일 컴포넌트
@@ -106,7 +107,7 @@ const LoginForm = () => {
 
         <ButtonWrapper>
 
-        <a href={'http://localhost:3065/auth/google'}>
+        <a href={`${backUrl}/auth/google`}>
         <Button
         // type="primary"
           style={{marginTop:'10px', borderRadius:'10px', background:'white', float:'right', border:'none', color:'black'}}
@@ -121,7 +122,7 @@ const LoginForm = () => {
       </Button>
       </a>  
 
-        <a href={'http://localhost:3065/auth/kakao'}>
+        <a href={`${backUrl}/auth/kakao`}>
         <Button
         type="primary"
           style={{marginTop:'10px', borderRadius:'10px', background:'#FEE500', float:'right', border:'none', color:'black'}}
