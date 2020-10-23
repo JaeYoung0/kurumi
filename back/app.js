@@ -17,6 +17,8 @@ const leafRouter = require('./routes/leaf')
 const authRouter = require('./routes/auth')
 
 const morgan = require("morgan");
+const hpp = require('hpp')
+const helmet = require('helmet')
 
 const path = require("path");
 
@@ -26,10 +28,23 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+// morgan
+if(process.env.NODE_ENV === 'production'){
+app.use(morgan('combined'))
+app.use(hpp())
+app.use(helmet())
+}else{
+  app.use(morgan('dev'))
+}
+
+
+
+
 // cors피해가기 위해서 cors미들웨어 장착
 app.use(
   cors({
-    origin: ["http://localhost:3060","https://ipapi.co/json"], //나는 3065이긴한데 3060들어갈 수 있게해줘
+    origin: ["http://localhost:3060","https://ipapi.co/json","kurumimyh.com/"], //나는 3065이긴한데 3060들어갈 수 있게해줘
     credentials: true, //도메인 달라도 쿠키 전달하게 해줌
     methods:
     "GET,HEAD,PUT,PATCH,POST,DELETE",   
@@ -62,8 +77,7 @@ db.sequelize
   })
   .catch(console.error);
 
-// morgan
-app.use(morgan("dev"));
+
 
 // upload image 미리보기를 위해서 upload 폴더를 프론트에 제공함
 app.use("/", express.static(path.join(__dirname, "uploads")));
@@ -76,6 +90,9 @@ app.use("/hashtag", hashtagRouter);
 app.use('/leaf', leafRouter)
 app.use('/auth', authRouter)
 
+app.get('/', (req, res) => {
+  res.send('hello express');
+});
 // 에러처리 미들웨어
 // app.use((err, req, res, next)=>{
 // })
