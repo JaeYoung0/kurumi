@@ -98,6 +98,6 @@ app.get('/', (req, res) => {
 // })
 
 // 리슨
-app.listen(3065, () => {
+app.listen(80, () => {
   console.log("server on");
 });
