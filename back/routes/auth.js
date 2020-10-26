@@ -56,7 +56,7 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/',
 }), (req, res) => {
-  res.redirect('http://13.209.153.169');
+  res.redirect('http://kurum2.com');
 });
 
 router.get('/google', passport.authenticate('google', {scope:['profile']}));
@@ -64,7 +64,7 @@ router.get('/google', passport.authenticate('google', {scope:['profile']}));
 router.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/',
 }), (req, res) => {
-  res.redirect('http://13.209.153.169');
+  res.redirect('http://kurum2.com');
 });
 
 module.exports = router;
