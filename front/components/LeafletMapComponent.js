@@ -359,7 +359,7 @@ const loadMyLeaf = useCallback(()=>{
                 
                 <a onClick={goToPost(leaf)}>
                   <img 
-                  src={`${backUrl}/${leaf.Images[0]?.src}`} 
+                  src={`${leaf.Images[0]?.src}`} 
                   style={{width:'100px'}}
                   ></img>
                 </a>
