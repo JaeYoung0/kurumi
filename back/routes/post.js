@@ -26,11 +26,12 @@ AWS.config.update({
 
 //POST /post/images (UPLOAD_IMAGES_REQUEST)
 // 배포환경
-const upload = multerS3({
+const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
     bucket: 'kurum2',
     key(req, file, cb){
+      console.log(file)
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`)
     }
   }),
