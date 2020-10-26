@@ -4,7 +4,7 @@ import userSaga from "./user";
 import axios from "axios";
 import {backUrl} from '../config/config'
 
-axios.defaults.baseURL = "http://52.78.228.244";
+axios.defaults.baseURL = backUrl;
 axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
