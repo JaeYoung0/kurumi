@@ -227,9 +227,12 @@ useEffect(() => {
           {/* <Header className="site-layout-background" style={{ padding: 0 , background: '#F0F2F5'}} /> */}
           
             <Row gutter={50} align='middle' style={{width:'100%', margin:0, height:'100%'}}>
-              <Col xs={24} sm={24} md={24} lg={24}>
-                {me ? null : <LoginForm />}
-              </Col>
+              {me ? null : 
+                <Col xs={24} sm={24} md={24} lg={24}>
+                <LoginForm />
+                </Col>
+              }
+              
               <Col xs={24} sm={24} md={24} lg={24} style={{padding:0}}>
                 {me ? children : null}
               </Col>
