@@ -34,19 +34,10 @@ if(process.env.NODE_ENV === 'production'){
 app.use(morgan('combined'))
 app.use(hpp())
 app.use(helmet())
-}else{
-  app.use(morgan('dev'))
-}
-
-
-
-
 // cors피해가기 위해서 cors미들웨어 장착
 app.use(
   cors({
-    origin: ["http://localhost:3060",
-    "https://ipapi.co/json","kurumimyh.com/",
-    "http://52.79.222.42",], //나는 3065이긴한데 3060들어갈 수 있게해줘
+    origin: ["https://ipapi.co/json","http://kurum2.com/"], //나는 3065이긴한데 3060들어갈 수 있게해줘
     credentials: true, //도메인 달라도 쿠키 전달하게 해줌
     methods:
     "GET,HEAD,PUT,PATCH,POST,DELETE",   
@@ -55,6 +46,27 @@ app.use(
         // preflightContinue: false, 
   })
 );
+}else{
+
+  app.use(morgan('dev'))
+  // cors피해가기 위해서 cors미들웨어 장착
+app.use(
+  cors({
+    origin: ["http://localhost:3060","https://ipapi.co/json"], 
+    credentials: true, 
+    methods:
+    "GET,HEAD,PUT,PATCH,POST,DELETE",   
+    allowedHeaders:
+        "Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Origin,Cache-Control,Content-Type,X-Token,X-Refresh-Token",
+        // preflightContinue: false, 
+  })
+);
+}
+
+
+
+
+
 
 
 passportConfig();
@@ -65,6 +77,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    cookie:{
+      httpOnly: true,
+      secure: false,
+      domain: process.env.NODE_ENV === 'production' && '.kurum2.com'
+    }
   })
 );
 app.use(passport.initialize());

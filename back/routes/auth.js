@@ -56,7 +56,7 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/',
 }), (req, res) => {
-  res.redirect('http://http://52.79.222.42/');
+  res.redirect('http://13.209.153.169');
 });
 
 router.get('/google', passport.authenticate('google', {scope:['profile']}));
@@ -64,7 +64,7 @@ router.get('/google', passport.authenticate('google', {scope:['profile']}));
 router.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/',
 }), (req, res) => {
-  res.redirect('http://http://52.79.222.42/');
+  res.redirect('http://13.209.153.169');
 });
 
 module.exports = router;
