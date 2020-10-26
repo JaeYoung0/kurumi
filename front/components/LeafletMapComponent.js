@@ -169,10 +169,10 @@ const LeafletMapComponent = ()=> {
 
 
   console.log('geolocation 1차 시도 실패')
-  // return Modal.warning({
-  //     content: '새로고침 해주세요.',
-  //     centered: true
-  // })
+  return Modal.warning({
+      content: '새로고침 해주세요.',
+      centered: true
+  })
   axios.get('https://ipapi.co/json')
     .then((response)=>{
       console.log(response.data.latitude, response.data.longitude)
