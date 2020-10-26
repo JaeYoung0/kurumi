@@ -6,6 +6,8 @@ const { isLoggedIn } = require("./middlewares");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const multerS3 = require('multer-s3')
+const AWS = require('aws-sdk')
 
 //uploads폴더 만들기
 try {
@@ -15,20 +17,40 @@ try {
   fs.mkdirSync("uploads");
 }
 
+// S3
+AWS.config.update({
+  accessKeyId: process.env.SE_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  region:'ap-northeast-2', 
+})
+
 //POST /post/images (UPLOAD_IMAGES_REQUEST)
-const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, done) {
-      done(null, "uploads");
-    },
-    filename(req, file, done) {
-      const ext = path.extname(file.originalname); //확장자 추출(.png)
-      const basename = path.basename(file.originalname, ext); //제로초
-      done(null, basename + "_" + new Date().getTime() + ext); //제로초_152456486.png
-    },
+// 배포환경
+const upload = multerS3({
+  storage: multerS3({
+    s3: new AWS.S3(),
+    bucket: 'kurum2',
+    key(req, file, cb){
+      cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`)
+    }
   }),
-  limits: { fileSize: 20 * 1024 * 1024 }, //20MB
-});
+    limits: { fileSize: 20 * 1024 * 1024 }, //20MB
+})
+
+// 개발환경
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination(req, file, done) {
+//       done(null, "uploads");
+//     },
+//     filename(req, file, done) {
+//       const ext = path.extname(file.originalname); //확장자 추출(.png)
+//       const basename = path.basename(file.originalname, ext); //제로초
+//       done(null, basename + "_" + new Date().getTime() + ext); //제로초_152456486.png
+//     },
+//   }),
+//   limits: { fileSize: 20 * 1024 * 1024 }, //20MB
+// });
 
 router.post("/images", upload.array("image"), (req, res, next) => {
   try {
@@ -37,7 +59,7 @@ router.post("/images", upload.array("image"), (req, res, next) => {
       return
     }
 
-    res.json({image: req.files.map((v) => v.filename), key: req.body.key});
+    res.json({image: req.files.map((v) => v.location), key: req.body.key});
   } catch (error) {
     console.error(error);
     next(error);
