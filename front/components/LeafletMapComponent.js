@@ -360,7 +360,7 @@ const loadMyLeaf = useCallback(()=>{
                 
                 <a onClick={goToPost(leaf)}>
                   <img 
-                  src={`${leaf.Images[0]?.src}`} 
+                  src={`${leaf.Images[0]?.src.replace(/\/thumb\//,'/original/')}`} 
                   style={{width:'100px'}}
                   ></img>
                 </a>
