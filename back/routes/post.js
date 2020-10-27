@@ -60,7 +60,7 @@ router.post("/images", upload.array("image"), (req, res, next) => {
       return
     }
 
-    res.json({image: req.files.map((v) => v.location), key: req.body.key});
+    res.json({image: req.files.map((v) => v.location.replace(/\/original\//,'/thumb')), key: req.body.key});
   } catch (error) {
     console.error(error);
     next(error);
