@@ -360,7 +360,7 @@ dispatch({
             <Card.Meta
               avatar={
               <Link
-              href={`/user/${post.Retweet.User.id}`}>
+              href={`/user/${post.Retweet.User.id}`} prefetch={false}>
                 <a><Avatar>{post.Retweet.User.nickname[0]}</Avatar></a>
               </Link>}
               title={post.Retweet.User.nickname}
@@ -371,7 +371,7 @@ dispatch({
         : (<Card.Meta
             avatar={
             <Link
-            href={`/user/${post.User.id}`}>
+            href={`/user/${post.User.id}`} prefetch={false}>
                 <a><Avatar size={'large'} 
                 src={
                   mainPosts.length !== 0 ? `${post.User.Image.src}` : `${singlePost.User.Image.src}`
@@ -459,7 +459,7 @@ dispatch({
                  
                   author={item.User.nickname}
                   avatar={<Link
-                    href={`/user/${post.User.id}`}>
+                    href={`/user/${post.User.id}`} prefetch={false}>
                       <a><Avatar
                       src={
                         

@@ -46,7 +46,7 @@ const AppLayout2 = ({ children, menuKey }) => {
 //====
 
 
-const { Header, Content, Footer, Sider } = Layout;
+
 const dispatch = useDispatch();
 const [collapsed, setcollapsed] = useState(false)
 const { me,logOutIng,logOutDone } = useSelector((state) => state.user);
