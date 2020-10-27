@@ -46,7 +46,7 @@ const PostImages = ({ images }) => {
           <img
               style={{width:'100%'}}
               role="presentation"
-              src={`${v.src}`}
+              src={`${v.src.replace(/\/thumb\//, '/original/')}`}
               alt={`${v.src}`}
               // onClick={onZoom}
             />
