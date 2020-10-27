@@ -31,7 +31,7 @@ AWS.config.update({
 
 //POST /post/images
 
-const upload = multerS3({
+const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
     bucket: 'kurum2',
