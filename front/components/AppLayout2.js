@@ -198,9 +198,9 @@ useEffect(() => {
               <div style={{textAlign:'center'}}>베타버전입니다.</div>
             </Menu.Item>
 
-            <Menu.Item>
+            {/* <Menu.Item>
               <div style={{textAlign:'center'}}>Copyright © LEMAR KIM & SatAf. All rights reserved.</div>
-            </Menu.Item>
+            </Menu.Item> */}
 
             
             

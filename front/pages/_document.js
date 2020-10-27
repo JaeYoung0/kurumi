@@ -24,6 +24,8 @@ export default class MyDocument extends Document {
           </>
         ),
       };
+    } catch(error){
+      console.error(error)
     } finally {
       sheet.seal();
     }
@@ -35,7 +37,6 @@ export default class MyDocument extends Document {
         <Head />
         <body>
           <Main />
-          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated" />
           <NextScript />
         </body>
       </Html>
