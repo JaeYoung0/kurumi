@@ -329,7 +329,7 @@ const loadMyLeaf = useCallback(()=>{
           <TileLayer
             // attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             // url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+            url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
             // url='https://firms.modaps.eosdis.nasa.gov/wms/viirs'
 
           />

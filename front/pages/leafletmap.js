@@ -1,5 +1,3 @@
-//rafce
-
 import React, { useEffect,useCallback,useState } from "react";
 import AppLayout2 from "../components/AppLayout2";
 import Head from "next/head";

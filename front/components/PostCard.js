@@ -190,7 +190,7 @@ const onShare = useCallback(() => {
       return alert("로그인이 필요합니다.");
     }
 
-    Kakao.init('d1d1666eac47faa6c1c3ec72b9114b8f')
+    Kakao.init(process.env.JA_KAKAO)
     Kakao.Link.sendCustom({
       templateId: 39271   
     });
