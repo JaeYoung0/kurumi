@@ -28,9 +28,10 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('trust proxy', 1)
+
 // morgan
 if(process.env.NODE_ENV === 'production'){
+app.set('trust proxy', 1)
 app.use(morgan('combined'))
 app.use(hpp())
 app.use(helmet())
@@ -80,7 +81,7 @@ app.use(
     proxy: true,
     cookie:{
       httpOnly: true,
-      secure: false,
+      secure: true,
       domain: process.env.NODE_ENV === 'production' && '.kurum2.com'
     }
   })
