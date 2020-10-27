@@ -11,7 +11,7 @@ import {
   
   
 } from "@ant-design/icons";
-
+import dotenv from 'dotenv';
 
 import PropTypes from "prop-types";
 import UploadImages from '../components/UploadImages'
@@ -41,7 +41,7 @@ import styled from 'styled-components'
 import useInput from '../hooks/useinput'
 import Router from 'next/router'
 import ReportModal from './ReportModal'
-
+dotenv.config()
 moment.locale('ko')
 
 const CommentStyled = styled(Comment)`
@@ -138,21 +138,6 @@ const onDeleteComment = useCallback((item)=>()=>{
   },[removePostIng])  
 
 
-// const [showReport, setshowReport] = useState(showReport)
-
-
-    
-
-// const [commentId, setCommentId] = useState(null)
-
-
-
-// useEffect(() => {
-//   console.log(`commentId:${commentId}`)
-// }, [reportVisible])
-
-
-
 
 const onLike = useCallback(() => {
     if (!id) {
@@ -190,7 +175,7 @@ const onShare = useCallback(() => {
       return alert("로그인이 필요합니다.");
     }
 
-    Kakao.init(process.env.JA_KAKAO)
+    Kakao.init(process.env.KAKAO_JAVASCRIPT_KEY)
     Kakao.Link.sendCustom({
       templateId: 39271   
     });
