@@ -1,12 +1,7 @@
 import React from "react";
-import { List, Button, Card,Avatar,Modal } from "antd";
+import {Card,Avatar } from "antd";
 import PropTypes from "prop-types";
-import { StopOutlined,StopTwoTone,PlusCircleTwoTone
-,DownSquareTwoTone,
-DownOutlined,
-CaretDownOutlined
-
-} from "@ant-design/icons";
+import {StopTwoTone,DownOutlined,} from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { UNFOLLOW_REQUEST } from "../reducers/user";
 
@@ -20,21 +15,6 @@ const FollowList = ({ header, data, onClickMore, loading }) => {
   };
 
   return (
-    // <List
-    //   style={{ marginBottom: 20 }}
-    //   grid={{ gutter: 4, xs: 2, md: 3 }}
-    //   size="small"
-    //   // header={<div>{header}</div>}
-    //   loadMore={
-    //     <div style={{ textAlign: "center", margin: "10px 0" }}>
-
-    //     </div>
-    //   }
-    //   bordered
-    //   dataSource={data}
-    //   renderItem={(item) => (
-    //     <List.Item style={{ marginTop: 20 }}>
-
         <div style={{textAlign:'center'}}>
         {data && data.map((item,i)=>
             <Card
@@ -60,23 +40,14 @@ const FollowList = ({ header, data, onClickMore, loading }) => {
             } />
           </Card>  
             )}
-            {/* <CaretDownOutlined /> */}
+            
             <DownOutlined 
             onClick={onClickMore}
-            // loading={loading}
             />
         </div>
-          
-            
-          
 
-
-
-        // {/* </List.Item> */}
       )}
-    // />
-//   );
-// };
+
 
 FollowList.propTypes = {
   header: PropTypes.string.isRequired,

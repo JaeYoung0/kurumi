@@ -1,24 +1,12 @@
 
 
 
-import React,{useState, useCallback,useEffect} from 'react'
+import React,{useState, useCallback} from 'react'
 import useInput from '../hooks/useinput'
-import {Button, Modal,Input,Form,Popover, } from "antd";
+import {Button, Modal,Input,Form} from "antd";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    EllipsisOutlined,
-    
-    
-    
-  } from "@ant-design/icons";
-import {
-    
-    REMOVE_COMMENT_REQUEST,
-    LIKE_COMMENT_REQUEST,
-    UNLIKE_COMMENT_REQUEST,
-    ADD_REPORT_REQUEST
-  } from "../reducers/post";
+import {ADD_REPORT_REQUEST} from "../reducers/post";
 
 
 const ReportModal = ({item,_post}) => {
@@ -71,12 +59,13 @@ const ReportModal = ({item,_post}) => {
             content: reportText}
         })
       
-        setReportVisible(false)
+        
 
         Modal.success({
           centered:true,
           content:'신고를 접수했습니다.'
         })
+        setReportVisible(false)
 
       },[reportText])
 

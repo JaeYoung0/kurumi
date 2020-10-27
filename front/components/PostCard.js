@@ -232,8 +232,9 @@ const onRemoveImage = useCallback((index) => () => {
 
 
 const onCancel = useCallback(()=>{
-  setModalVisible(false)
   setText(post.content)
+  setModalVisible(false)
+  
 })
 const onSubmit = useCallback(() => {
     
@@ -241,7 +242,7 @@ const onSubmit = useCallback(() => {
     return alert("게시글을 작성하세요.");
   }
 
-  setModalVisible(false)
+  
 
   const formData = new FormData();
   imagePaths.forEach((p) => {
@@ -258,6 +259,8 @@ const onSubmit = useCallback(() => {
     for (let value of formData.values()) {
     console.log(`formData valuessssss: ${value}`); 
    }
+
+   setModalVisible(false)
 
   return dispatch({
     type: PATCH_POST_REQUEST,

@@ -201,7 +201,7 @@ const LeafletMapComponent = ()=> {
     
   useEffect(() => {
   if(addLeafDone){
-    setVisible(false)
+    
 
     setContent('')
     Modal.success({
@@ -210,6 +210,7 @@ const LeafletMapComponent = ()=> {
     });
     
     Router.push('/leafletmap')
+    setVisible(false)
     
     
   }
