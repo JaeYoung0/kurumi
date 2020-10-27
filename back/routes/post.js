@@ -28,7 +28,7 @@ AWS.config.update({
 // 배포환경
 const upload = multer({
   storage: multerS3({
-    limits: { fileSize: 20 * 1024 * 1024 }, //20MB
+    
     s3: new AWS.S3(),
     bucket: 'kurum2',
     key(req, file, cb){
@@ -36,7 +36,7 @@ const upload = multer({
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`)
     }
   }),
-    
+    // limits: { fileSize: 2 * 1024 * 1024 }, //20MB
 })
 
 // 개발환경
@@ -55,17 +55,10 @@ const upload = multer({
 // });
 
 router.post("/images", upload.array("image"), (req, res, next) => {
-  try {
-    console.log(`reqqqqqqqq:${JSON.stringify(req.body)}`);
-    if(req.files.length === 0){
-      return
-    }
+  
 
     res.json({image: req.files.map((v) => v.location.replace(/\/original\//,'/thumb/')), key: req.body.key});
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
+  
 });
 
 //POST /post
