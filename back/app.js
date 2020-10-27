@@ -38,13 +38,8 @@ app.use(helmet())
 // cors피해가기 위해서 cors미들웨어 장착
 app.use(
   cors({
-    origin: ["https://ipapi.co/json","https://kurum2.com","13.209.153.169"], //나는 3065이긴한데 3060들어갈 수 있게해줘
-    credentials: true, //도메인 달라도 쿠키 전달하게 해줌
-    methods:
-    "GET,HEAD,PUT,PATCH,POST,DELETE",   
-    allowedHeaders:
-        "Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Origin,Cache-Control,Content-Type,X-Token,X-Refresh-Token",
-        // preflightContinue: false, 
+    origin: ["https://ipapi.co/json","https://kurum2.com"], 
+    credentials: true,
   })
 );
 }else{
