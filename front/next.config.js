@@ -15,7 +15,10 @@ module.exports = withBundleAnalyzer({
             ...config,
             mode: prod ? 'production' : 'development',
             devtool: prod ? 'hidden-source-map' : "eval",
-            plugins
+            plugins,
+            node:{
+                fs:"empty"
+            }
         }
     },
     compress: true
