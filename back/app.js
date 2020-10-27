@@ -31,10 +31,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // morgan
 if(process.env.NODE_ENV === 'production'){
-app.set('trust proxy', 1)
+app.enable('trust proxy')
 app.use(morgan('combined'))
 app.use(hpp())
-app.use(helmet())
+app.use(helmet({contentSecurityPolicy:false}))
 // cors피해가기 위해서 cors미들웨어 장착
 app.use(
   cors({
@@ -49,12 +49,7 @@ app.use(
 app.use(
   cors({
     origin: ["http://localhost:3060","https://ipapi.co/json"], 
-    credentials: true, 
-    methods:
-    "GET,HEAD,PUT,PATCH,POST,DELETE",   
-    allowedHeaders:
-        "Access-Control-Allow-Headers,Access-Control-Allow-Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Origin,Cache-Control,Content-Type,X-Token,X-Refresh-Token",
-        // preflightContinue: false, 
+    credentials: true,
   })
 );
 }
