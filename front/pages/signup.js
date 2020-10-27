@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import AppLayout from "../components/AppLayout";
+import AppLayout2 from "../components/AppLayout2";
 import { Form, Input, Checkbox, Button,Upload,Modal } from "antd";
 import Head from "next/head";
 import useInput from "../hooks/useinput";
@@ -121,7 +121,7 @@ const signup = () => {
       <Head>
         <title>Sign Up | Kurumi</title>
       </Head>
-      <AppLayout>
+      <AppLayout2>
         <Form onFinish={onSubmit}
         style={{padding:'10px'}}
         encType="multipart/form-data"
@@ -191,7 +191,7 @@ const signup = () => {
             </Button>
           </div>
         </Form>
-      </AppLayout>
+      </AppLayout2>
     </>
   );
 };

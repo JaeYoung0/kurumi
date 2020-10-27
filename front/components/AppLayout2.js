@@ -196,6 +196,9 @@ useEffect(() => {
 
             <Menu.Item>
               <div style={{textAlign:'center'}}>베타버전입니다.</div>
+              <div style={{textAlign:'center'}}>Copyright © LEMAR KIM & SatAf. All rights reserved.</div>
+              <div style={{textAlign:'center'}}>special thanks to BKH</div>
+              
             </Menu.Item>
 
             
