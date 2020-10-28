@@ -52,7 +52,7 @@ function signUpAPI(data) {
 function* signUp(action) {
   try {
     const result = yield call(signUpAPI, action.data);
-    console.log(result);
+    
     yield put({
       type: SIGN_UP_SUCCESS,
     });
@@ -120,7 +120,7 @@ function loadMyInfoAPI() {
 }
 function* loadMyInfo() {
   try {
-    console.log("load my infooooooooooo");
+    
     const result = yield call(loadMyInfoAPI);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,

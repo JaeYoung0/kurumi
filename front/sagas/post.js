@@ -276,7 +276,7 @@ function* likePost(action) {
       type: LIKE_POST_SUCCESS,
       data: result.data,
     });
-    console.log(result.data);
+    
   } catch (error) {
     console.error(error);
     yield put({
@@ -326,7 +326,7 @@ function* likeComment(action) {
       type: LIKE_COMMENT_SUCCESS,
       data: result.data,
     });
-    console.log(result.data);
+    
   } catch (error) {
     console.error(error);
     yield put({
@@ -443,14 +443,14 @@ function loadHashtagPostsAPI(data, lastId) {
 }
 function* loadHashtagPosts(action) {
   try {
-    console.log("load hashtag 111111111111");
+    
     const result = yield call(loadHashtagPostsAPI, action.data, action.lastId);
 
     yield put({
       type: LOAD_HASHTAG_POSTS_SUCCESS,
       data: result.data,
     });
-    console.log(`1111111111${result}`)
+    
   } catch (error) {
     console.error(error);
     yield put({

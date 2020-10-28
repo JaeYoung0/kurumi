@@ -120,10 +120,23 @@ const LoginForm = () => {
 
       <ButtonWrapper>
           <a href={`${backUrl}/auth/google`}>
-            <GoogleButtonStyled
+            <Button
               icon={<img src='../googleLogin.png'/>}
+              style={{
+                marginTop:'10px',
+                borderRadius:'10px',
+                background:'white',
+                float:'right',
+                border:'none',
+                color:'black',
+                width:'17px',
+                verticalAlign:'middle',
+                marginBottom:'4px',
+                marginRight:'5px'
+                
+              }}
               >구글 로그인
-            </GoogleButtonStyled>
+            </Button>
           </a>  
 
           <a href={`${backUrl}/auth/kakao`}>

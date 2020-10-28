@@ -18,9 +18,7 @@ const NodeBird = ({ Component }) => {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" />
-        
-        
+        <meta charSet="utf-8" />        
       </Head>
       <Component />
     </>
