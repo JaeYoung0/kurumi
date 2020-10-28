@@ -30,6 +30,13 @@ position:sticky;
 z-index:999;
 `
 
+const SearchStyled = styled(Input.Search)`
+background:#F0F2F5;
+.ant-input{
+  background:#F0F2F5
+}
+`
+
 const AppLayout2 = ({ children, menuKey }) => {
   
   const [menuVisible, setMenuVisible] = useState(false)
@@ -155,17 +162,19 @@ Router.push(`/hashtag/${searchInput}`)
                     </Button>
                   </Menu.Item>
 
-                  <Menu.Item>
-                    <div style={{textAlign:'center'}}>베타버전입니다.</div>
-                  </Menu.Item>
+                  
 
                   <Menu.Item>
-                    <Input.Search 
+                    <SearchStyled
                     value={searchInput}
                     onChange={onChangeSearchInput}
                     onSearch={onSearch}
                     placeholder='게시글 검색'
                     />
+                  </Menu.Item>
+
+                  <Menu.Item>
+                    <div style={{textAlign:'center'}}>베타버전입니다.</div>
                   </Menu.Item>
 
 
