@@ -45,9 +45,10 @@ dotenv.config()
 moment.locale('ko')
 
 const CommentStyled = styled(Comment)`
+border:none;
 background: white;
 padding: 0px 20px;
-box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+/* box-shadow: 2px 2px 5px rgba(0, 0, 0, .2); */
 .ant-comment-content{
   background:#F0F2F5;
   padding: 10px;
@@ -168,14 +169,13 @@ const removePost = useCallback(() => {
     });
   }, [id]);
 
- 
 
 const onShare = useCallback(() => {
     if (!id) {
       return alert("로그인이 필요합니다.");
     }
 
-    Kakao.init(process.env.KAKAO_JAVASCRIPT_KEY)
+    
     Kakao.Link.sendCustom({
       templateId: 39271   
     });
@@ -379,7 +379,7 @@ dispatch({
             description={
             <>
               <PostCardContent postData={post.content} />
-              <div style={{fontSize:'10px', margin:'5px 2px'}}>{moment(post.updatedAt).startOf('hour').fromNow()}</div>
+              <div style={{fontSize:'0.8em', margin:'5px 2px'}}>{moment(post.updatedAt).fromNow()}</div>
             </>
             }
           />)
@@ -456,9 +456,9 @@ dispatch({
                   actions={[
                     // <div style={{width:'100%' ,display:'flex', justifyContent:'space-between'}}>
                     <div>
-                    <span style={{fontSize:'0.5em', marginRight:'10px'}} >{moment(item.updatedAt).startOf('hour').fromNow()}</span>
+                    <span style={{fontSize:'0.8em', marginRight:'10px'}} >{moment(item.updatedAt).fromNow()}</span>
                     {item.CommentLikers.length !==0
-                     && <span style={{fontSize:'0.5em'}}>좋아요 {item.CommentLikers.length}개</span>}
+                     && <span style={{fontSize:'0.8em'}}>좋아요 {item.CommentLikers.length}개</span>}
                     </div>,
                     <Popover
             

@@ -90,7 +90,9 @@ useEffect(() => {
             alignItems:'center',
             padding:'15px 20px',
             border: '1px solid #DBDBDB',
-            height: '10vh'
+            height: '80px',
+            position:'sticky',
+            zIndex:'999'
             }}>
             <Col>
               <Link href='/' replace>
@@ -198,6 +200,16 @@ useEffect(() => {
               <div style={{textAlign:'center'}}>베타버전입니다.</div>
             </Menu.Item>
 
+            <Menu.Item>
+            <Input.Search 
+          value={searchInput}
+          onChange={onChangeSearchInput}
+          onSearch={onSearch}
+          placeholder='게시글 검색'
+
+      />
+            </Menu.Item>
+
             {/* <Menu.Item>
               <div style={{textAlign:'center'}}>Copyright © LEMAR KIM & SatAf. All rights reserved.</div>
             </Menu.Item> */}
@@ -217,13 +229,7 @@ useEffect(() => {
           </Drawer>  
           </Row>
           
-          {/* <Input.Search 
-          value={searchInput}
-          onChange={onChangeSearchInput}
-          onSearch={onSearch}
-          placeholder='해시태그로 게시글 검색'
-
-      /> */}
+          
          
 
 

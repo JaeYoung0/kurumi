@@ -104,7 +104,7 @@ const User = () => {
           <Card.Meta
             avatar={<Avatar
               size={40}
-                    src={`${backUrl}/${userInfo.Image.src}`}
+                    src={`${userInfo.Image.src}`}
             ></Avatar>}
             title={userInfo.nickname}
           />

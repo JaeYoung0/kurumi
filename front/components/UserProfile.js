@@ -186,7 +186,7 @@ if(followerError || followingError){
 
       {/* 프로필 바꾸기 모달창 */}
       <Modal
-      width={153}
+      width={200}
       bodyStyle={{display:'flex', justifyContent:'center'}}
       centered={true}
       visible={modalVisible}
@@ -201,7 +201,10 @@ if(followerError || followingError){
           ]}
       
       >
+      <div style={{justifyContent:'center', alignItems:'center'}}>
         <UploadImages />
+        </div>
+      
       </Modal>
       {/* 팔로잉 드로워 */}
       <Drawer

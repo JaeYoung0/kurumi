@@ -11,17 +11,20 @@ import 'leaflet-search/src/leaflet-search.css';
 import 'leaflet-geosearch/dist/geosearch.css';
 // import 'leaflet.markercluster/dist/MarkerCluster.css'
 // import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import dotenv from 'dotenv'
+dotenv.config()
 import 'react-leaflet-markercluster/dist/styles.min.css'
 
 const NodeBird = ({ Component }) => {
+  
   return (
     <>
-      <Component />
       <Head>
         <meta charSet="utf-8" />
-        <script defer src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-        {/* <title>HushNe</title> */}
+        
+        
       </Head>
+      <Component />
     </>
   );
 };

@@ -33,9 +33,9 @@ const FollowList = ({ header, data, onClickMore, loading }) => {
               </div>
               }
             description={
-              <div>
-                <span>게시글 {item.Posts.length} ・ </span>
-                <span>팔로워 {item.Followers.length}</span>
+              <div style={{display:'flex', justifyContent:"flex-start"}}>
+                <span style={{fontSize:'0.8em'}}>게시글 {item.Posts.length} ・ </span>
+                <span style={{fontSize:'0.8em'}}>팔로워 {item.Followers.length}</span>
               </div>
             } />
           </Card>  

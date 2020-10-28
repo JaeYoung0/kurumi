@@ -5,20 +5,21 @@ import { CHANGE_NICKNAME_REQUEST } from "../reducers/user";
 import useInput from "../hooks/useinput";
 import styled from 'styled-components';
 
+const DivStyled = styled.div`
+  padding: 20px;
+  .ant-btn-primary{
+    background:#2C57A5;
+    border:none;
+  }
+  `
+
 const NicknameEditForm = () => {
   const { me,changeNicknameDone } = useSelector((state) => state.user);
   const [nickname, onChangeNickname] = useInput(me?.nickname || "");
 
   
 
-  const FormStyled = styled(Form)`
-  padding: 20px;
-  .ant-btn-primary{
-    background:#2C57A5;
-    border:none;
-  }
   
-  `
 
   const dispatch = useDispatch();
 
@@ -48,16 +49,15 @@ useEffect(() => {
 
   return (
     <>
-      <FormStyled>
+      <DivStyled>
         <Input.Search
           value={nickname}
           onChange={onChangeNickname}
-          // addonBefore="닉네임"
           enterButton="수정"
           onSearch={onSubmit}
         />
-      </FormStyled>
-      {/* 아바타 수정 */}
+      </DivStyled>
+      
     </>
   );
 };

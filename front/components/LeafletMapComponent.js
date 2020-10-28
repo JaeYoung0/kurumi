@@ -187,22 +187,20 @@ const LeafletMapComponent = ()=> {
     },{timeout:5000})
     }
     , [countCloud] );
-  })
+  },[])
     
 
   
-  useEffect(() => {
-    setZoom(13)
-  }, [haveUsersLocation])
+  // useEffect(() => {
+  //   setZoom(13)
+  // }, [haveUsersLocation])
 
-  useEffect(() => {
-    console.log(lat, lng)  
-  }, [lat,lng])
+  // useEffect(() => {
+  //   console.log(lat, lng)  
+  // }, [lat,lng])
     
   useEffect(() => {
   if(addLeafDone){
-    
-
     setContent('')
     Modal.success({
       content: '저장완료',
@@ -211,8 +209,6 @@ const LeafletMapComponent = ()=> {
     
     Router.push('/leafletmap')
     setVisible(false)
-    
-    
   }
 }, [addLeafDone])
 
@@ -360,7 +356,7 @@ const loadMyLeaf = useCallback(()=>{
                 
                 <a onClick={goToPost(leaf)}>
                   <img 
-                  src={`${leaf.Images[0]?.src.replace(/\/thumb\//,'/original/')}`} 
+                  src={`${leaf.Images[0]?.src}`} 
                   style={{width:'100px'}}
                   ></img>
                 </a>

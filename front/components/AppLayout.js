@@ -61,7 +61,10 @@ const onLogOut = useCallback(() => {
             justifyContent:'space-between', 
             alignItems:'center',
             padding:'15px 20px',
-            border: '1px solid #DBDBDB'
+            border: '1px solid #DBDBDB',
+            height: '80px',
+            position:'sticky',
+            zIndex:'999'
             }}>
             <Col>
               <Link href='/' replace>
