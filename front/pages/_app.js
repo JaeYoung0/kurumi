@@ -9,8 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'leaflet-search/src/leaflet-search.css';
 import 'leaflet-geosearch/dist/geosearch.css';
-// import 'leaflet.markercluster/dist/MarkerCluster.css'
-// import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import dotenv from 'dotenv'
 dotenv.config()
 import 'react-leaflet-markercluster/dist/styles.min.css'

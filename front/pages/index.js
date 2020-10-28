@@ -1,13 +1,10 @@
-import react, { useEffect,useCallback } from "react";
+import react, { useEffect} from "react";
 
-import Router from 'next/router'
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import useInput from '../hooks/useinput'
-import { Divider, Input } from "antd";
-import AppLayout from "../components/AppLayout";
+
 import AppLayout2 from "../components/AppLayout2";
-import PostForm from "../components/PostForm";
+
 import PostCard from "../components/PostCard";
 
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
@@ -23,7 +20,7 @@ import axios from "axios";
 
 
 const Home = () => {
-  const { me } = useSelector((state) => state.user);
+  
   const { mainPosts, hasMorePost, loadPostIng, retweetError } = useSelector(
     (state) => state.post
   );
@@ -83,8 +80,7 @@ const Home = () => {
 // Home 컴포넌트보다 먼저 실행되서 SSR로 깜빡임 없이 화면을 구현해주는 ---- getServerSideProps
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
-    console.log("getServerSideProps start");
-    console.log(context.req.headers);
+    
     const cookie = context.req ? context.req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
     if (context.req && cookie) {
@@ -103,7 +99,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     // redux-saga의 END는 dispatch해서 SUCCESS해가지고 결과를 가져와서 화면에 그리기까지 기다리게 해줌
     context.store.dispatch(END);
-    console.log("getServerSideProps end");
+    
     await context.store.sagaTask.toPromise();
     // return {props:{data:mainPosts}}
   }

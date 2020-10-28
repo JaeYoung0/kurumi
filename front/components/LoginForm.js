@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
 import Link from "next/link";
@@ -9,8 +9,7 @@ import useInput from "../hooks/useinput";
 
 import {backUrl} from '../config/config'
 
-// 다음엔 리액트 라이브러리 Form으로 간단하게 해결해보기
-// 스타일 컴포넌트
+
 const ButtonWrapper = styled.div`
   margin-top: 10px;
   display: flex;
@@ -21,6 +20,7 @@ const ButtonWrapper = styled.div`
     margin-left:5px;
   }
 `;
+
 const FormStyled = styled(Form)`
   padding: 10px;
   max-width: 450px;
@@ -30,7 +30,32 @@ const FormStyled = styled(Form)`
 const InputStyled = styled(Input)`
 margin-bottom: 10px;
 border-radius: 10px;
+`
 
+const GoogleButtonStyled = styled(Button)`
+margin-top:10px;
+border-radius:10px;
+background:white;
+float:right;
+border:none;
+color:black;
+width:17px;
+vertical-align:middle;
+margin-bottom:4px;
+margin-right:5px;
+`
+
+const KakaoButtonStyled = styled(Button)`
+margin-top:10px;
+border-radius:10px;
+background:#FEE500;
+float:right;
+border:none;
+color:black;
+width:15px;
+vertical-align:middle;
+margin-bottom:4px;
+margin-right:5px;
 `
 
 const LoginForm = () => {
@@ -39,30 +64,20 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const { logInIng, logInError } = useSelector((state) => state.user);
 
+  const onSubmitForm = useCallback(() => {
+    //   antd의 Form에서 onFinish에는 이미 preventDeafult가 적용되어있기 때문에 또 쓰면 안된다~
+    dispatch(loginRequestAction({ email, password }));
+  }, [email, password]);
+
   useEffect(() => {
     if (logInError) {
       alert(logInError);
     }
   }, [logInError]);
 
-  const onSubmitForm = useCallback(() => {
-    //   antd의 Form에서 onFinish에는 이미 preventDeafult가 적용되어있기 때문에 또 쓰면 안된다~
-    dispatch(loginRequestAction({ email, password }));
-  }, [email, password]);
-
-// const xycoord = useCallback(()=>{
-//   Axios.get('https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?input_coord=WGS84&output_coord=WGS84&x=126.913794&y=37.5043333',
-//   {headers:{
-//     'Authorization': '6fa9d12e365d1a30a4eb83c8ce8e0b2f',
-//     'Access-Control-Allow-Origin': 'https://dapi.kakao.com',
-//   }})
-// })
-
   return (
     <FormStyled onFinish={onSubmitForm}>
       <div>
-        
-        
         <InputStyled
           name="user-email"
           size='large'
@@ -72,12 +87,10 @@ const LoginForm = () => {
           type="email"
           placeholder='이메일'
         />
-        {/* <input> 태그의 required 속성은 폼 데이터(form data)가 서버로 제출되기 전 반드시 채워져 있어야 하는 입력 필드를 명시합니다. */}
+        {/* <input> 태그의 required 속성은 폼 데이터(form data)가 서버로 제출되기 전 반드시 채워져 있어야 함을 의미 */}
       </div>
 
       <div>
-        
-        
         <InputStyled
           name="user-password"
           size='large'
@@ -89,7 +102,6 @@ const LoginForm = () => {
       </div>
 
       <ButtonWrapper>
-
 
         <Link href="/signup">
           <a>
@@ -103,46 +115,26 @@ const LoginForm = () => {
          style={{borderRadius:'10px',background:'#2C57A5', border:'none'}}>
           로그인
         </Button>
-        </ButtonWrapper>
-
-        <ButtonWrapper>
-
-        <a href={`${backUrl}/auth/google`}>
-        <Button
-        // type="primary"
-          style={{marginTop:'10px', borderRadius:'10px', background:'white', float:'right', border:'none', color:'black'}}
-          icon={<img 
-          src='../googleLogin.png'
-          
-          style={{width:'17px', verticalAlign:'middle', marginBottom:'4px', marginRight:'5px'}}
-
-          />}
-          >
-          구글 로그인
-      </Button>
-      </a>  
-
-        <a href={`${backUrl}/auth/kakao`}>
-        <Button
-        type="primary"
-          style={{marginTop:'10px', borderRadius:'10px', background:'#FEE500', float:'right', border:'none', color:'black'}}
-          icon={<img 
-          src='../kakao.png'
-          
-          style={{width:'15px', verticalAlign:'middle', marginBottom:'4px', marginRight:'5px'}}
-
-          />}
-          >
-          카카오 로그인
-      </Button>
-      </a>
-
-
-      {/* <Button onClick={xycoord}>dd</Button> */}
 
       </ButtonWrapper>
+
+      <ButtonWrapper>
+          <a href={`${backUrl}/auth/google`}>
+            <GoogleButtonStyled
+              icon={<img src='../googleLogin.png'/>}
+              >구글 로그인
+            </GoogleButtonStyled>
+          </a>  
+
+          <a href={`${backUrl}/auth/kakao`}>
+            <KakaoButtonStyled
+              type="primary"          
+              icon={<img src='../kakao.png'/>}
+              >카카오 로그인
+            </KakaoButtonStyled>
+          </a>
+      </ButtonWrapper>
       
-     
     </FormStyled>
   );
 };

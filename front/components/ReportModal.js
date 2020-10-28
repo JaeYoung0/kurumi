@@ -11,14 +11,15 @@ import {ADD_REPORT_REQUEST} from "../reducers/post";
 
 const ReportModal = ({item,_post}) => {
     const dispatch = useDispatch();
+
     const {removePostIng,addReportDone } = useSelector(
         (state) => state.post
       ); 
-
-      const [reportVisible, setReportVisible] = useState(false)
+    
+    const [reportVisible, setReportVisible] = useState(false)
+    
     const showReport = useCallback(()=>{
-        // setCommentId(item.id)
-        
+        // setCommentId(item.id)        
         setReportVisible(true)
       },[])
 
@@ -26,29 +27,16 @@ const ReportModal = ({item,_post}) => {
         setReportVisible(false)
     },[])
    
-   
-   
-
     const [reportText, onChangeReportText, setReportText] = useInput(null)
-    
     const { me } = useSelector((state) => state.user);
     const id = useSelector((state) => state.user.me?.id);
 
     const onSubmitReport = useCallback((item)=>()=>{
-        if(reportText === null){
+      if(reportText === null){
           return Modal.warning({
             centered:true,
             content:'신고내용을 입력해주세요'
-          })
-        }
-      
-        console.log(`
-        reportId:${me.id}, 
-        userId:${item ? item.UserId : _post.UserId}, 
-        postId:${_post.id}, 
-        commentId:${item? item.id : null}, 
-        content:${reportText}`)
-
+        })}      
         
         dispatch({
           type: ADD_REPORT_REQUEST,
@@ -59,8 +47,6 @@ const ReportModal = ({item,_post}) => {
             content: reportText}
         })
       
-        
-
         Modal.success({
           centered:true,
           content:'신고를 접수했습니다.'
@@ -69,46 +55,35 @@ const ReportModal = ({item,_post}) => {
 
       },[reportText])
 
-
-    
-
-
     return (
-        <div >
+        <>             
+          <Button onClick={showReport}>신고</Button>
+            <Modal
+              style={{zIndex:1000}}
+              centered={true}
+              visible={reportVisible}
+              closable= {false}
+              footer={null}
+            >
+              <Form>
+                <Input.TextArea
+                style={{height: '106px', marginTop:'30px'}}
+                value={reportText}
+                onChange={onChangeReportText}
+                maxLength={140}
+                placeholder="신고내용을 입력해주세요"
+                />
 
-             
-                      <Button
-                         onClick={showReport}
-                      >신고</Button>
-                             <Modal
-                                // mask={false}
-                                style={{zIndex:1000}}
-                                centered={true}
-                                visible={reportVisible}
-                                closable= {false}
-                                footer={null}
-                                >
-                                <Form
-                                // onFinish={onSubmitReport}
-                                >
-                                    <Input.TextArea
-                                    style={{height: '106px', marginTop:'30px'}}
-                                    value={reportText}
-                                    onChange={onChangeReportText}
-                                    maxLength={140}
-                                    placeholder="신고내용을 입력해주세요"
-                                    />
-                                    <div style={{display:'flex',justifyContent:'flex-end'}}>
-                                    <Button onClick={closeReport}>취소</Button>
-                                    <Button type='primary' onClick={onSubmitReport(item)}>제출</Button>
-                                    </div>
-                                    
+                <div style={{display:'flex',justifyContent:'flex-end'}}>
+                <Button onClick={closeReport}>취소</Button>
+                <Button type='primary' onClick={onSubmitReport(item)}>제출</Button>
+                </div>
 
-                                </Form>
-                            </Modal>    
+              </Form>
+          </Modal>    
 
           
-        </div>
+        </>
     )
 }
 

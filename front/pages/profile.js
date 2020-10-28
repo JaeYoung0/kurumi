@@ -1,13 +1,12 @@
 //rafce
 
-import React, { useEffect,useCallback,useState } from "react";
+import React, { useEffect} from "react";
 import AppLayout2 from "../components/AppLayout2";
 import Head from "next/head";
-import FollowList from "../components/FollowList";
-import NicknameEditForm from "../components/NicknameEditForm";
-import { useDispatch, useSelector } from "react-redux";
+
+import {useSelector } from "react-redux";
 import Router from "next/router";
-import useSWR,{useSWRInfinite} from 'swr'
+
 
 import UserProfile from '../components/UserProfile';
 import axios from 'axios'
@@ -39,23 +38,14 @@ const Profile = () => {
     return '내 정보 로딩 중...';
   }
 
-  // if(followerError || followingError){
-  //   console.error(followerError || followingError)
-  //   return <div> 팔로잉/팔로워 로딩 중 에러가 발생합니다.</div>
-  // }
-
   return (
     <>
       <Head>
         <title>Profile | Kurumi</title>
       </Head>
       <AppLayout2 menuKey={'1'}>
-        {/* <NicknameEditForm /> */}
-        <UserProfile 
-          
-        />
+        <UserProfile />
         {myPosts.map((post) => <PostCard key={post.id} post={post} />)} 
-        
       </AppLayout2>
     </>
   );

@@ -50,32 +50,21 @@ const UploadImages = () => {
       },[removePostDone]);
 
     const onChangeImage = useCallback((e) => { //같은 컴포넌트에있는 Prop의 데이터를 받는건가?
-        console.log("e", e);
-        console.log("e.target.files or e.file~~~~~~~", e.file);
-        setFileList(e.fileList)
-        console.log(`e.file!!!!!!!${e.file}`)
-    
-        const imageFormData = new FormData();
         
-        imageFormData.append('image',e.file)
-        imageFormData.append('key',e.file.uid) //req.body.key
-    
-    
-        for (let key of imageFormData.keys()) {
-          console.log('key',key);
-        }
-        for (let value of imageFormData.values()) {
-          console.log('value',value);
-        }
-    
-        return dispatch({
+      setFileList(e.fileList)
+
+      const imageFormData = new FormData();  
+      imageFormData.append('image',e.file)
+      imageFormData.append('key',e.file.uid) //req.body.key
+  
+      return dispatch({
           type: UPLOAD_IMAGES_REQUEST,
           data: imageFormData,
         });
         
       },[uploadImagesIng]);
     
-      const handlePreview = async file => {
+    const handlePreview = async file => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
           }
@@ -84,13 +73,7 @@ const UploadImages = () => {
           setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
        }
 
-
-    
-
-      useEffect(()=>{
-        console.log('AFter Upload, fileList:', fileList)
-        
-       },[uploadImagesDone])
+      
 
     return (
         <>

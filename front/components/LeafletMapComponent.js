@@ -1,45 +1,30 @@
 import React,{useState, useEffect,useCallback, useRef} from 'react'
 import { Map, TileLayer, Marker, Popup, LeafletConsumer,WMSTileLayer } from 'react-leaflet'
 import L from 'leaflet'
-import { Form, Input, Button,Row,Col, Drawer } from 'antd';
+import { Form, Button, Drawer } from 'antd';
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_LEAF_REQUEST,LOAD_LEAFS_REQUEST,LOAD_MY_LEAFS_REQUEST } from "../reducers/post";
 import {Modal} from 'antd'
-import { END } from "redux-saga";
-import wrapper from "../store/configureStore";
 import axios from 'axios'
 import LeafPostForm from './LeafPostForm'
 import PostImages from './PostImages'
-import ImagesZoom from './imagesZoom/index'
-import {CloudOutlined,AimOutlined,SmileOutlined,SearchOutlined} from '@ant-design/icons'
-// import {markerClusterGroup} from 'leaflet.markercluster'
-
+import {CloudOutlined,AimOutlined,SmileOutlined} from '@ant-design/icons'
 import {LOAD_POST_REQUEST} from '../reducers/post'
 import Router from 'next/router'
 import { SearchControl,OpenStreetMapProvider } from 'leaflet-geosearch';
-import * as GeoSearch from 'leaflet-geosearch';
 import MarkerClusterGroup from "react-leaflet-markercluster";
-
-import {backUrl} from '../config/config'
-
-
-
-
 
 const MapStyled = styled(Map)`
 height: 100vh;
 .leaflet-bar-part-single{
   opacity:0.7;
-  /* height:10px; */
-  /* border-radius:40px; */
   border: none
   
 }
 form{
   opacity:0.7;
   padding:0;
-  /* border:0; */
 }
 .reset{
   display:none;
@@ -49,6 +34,7 @@ form{
   
 }
 `
+
 const FormStyled = styled(Form)`
 position: absolute;
 top: 300px;
@@ -66,22 +52,10 @@ const PostImagesStyled = styled(PostImages)`
 } */
 `
 
-// const PostFormStyled = styled(PostForm)`
-// position: absolute;
-// top: 10px;
-// right: 10px;
-// z-index: 999;
-// background: white;
-// padding: 10px;
-// height: 320px;
-// border-radius: 10px;
-// ` 
-
-
 const LeafletMapComponent = ()=> {
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user);
-  const {addPostDone, addLeafDone,leafs,imagePaths} = useSelector(state => state.post)
+  const {addLeafDone,leafs,imagePaths} = useSelector(state => state.post)
   const [lat, setLat] = useState(0)
   const [lng, setLng] = useState(0)
   const [zoom, setZoom] = useState(3)
@@ -91,15 +65,13 @@ const LeafletMapComponent = ()=> {
   const [currentPos, setCurrentPos] = useState([0,0])
   const [visible, setVisible] = useState(false)
   const [countCloud, setCountCloud] = useState(1)
+  
   const myIcon = L.icon({
     iconUrl: 'gaekurumi.png',
     iconSize: [50, 50],
     iconAnchor: [25, 45],
     popupAnchor: [5, -35],
   });
-
-  
-  
 
   const myIconOpacity = L.icon({
     iconUrl: 'gaekurumi_opacity.png',
@@ -117,12 +89,9 @@ const LeafletMapComponent = ()=> {
 
   const mapRef = useRef()  
 
-
+  // 장소 검색하기
   useEffect(() => {
-  // search
-
   const map = mapRef.current
-  
   const searchControl = new SearchControl({
     style: 'button',
     showMarker:false,
@@ -130,34 +99,16 @@ const LeafletMapComponent = ()=> {
     autoClose:true,
     position:'topleft',
     animateZoom:true,
-    // classNames:{
-    // container:'search_Leaflet_Container'
-    // }
     searchLabel:`찾고싶은 주소를 입력해주세요.`,
   });
 
   map.leafletElement.addControl(searchControl)  
+
   }, [])
 
   const markerRef = useRef()
-
-// useEffect(() => {
-//   // cluster
-//   const marker = markerRef.current
-//   const map = mapRef.current
-//   const markers = L.markerClusterGroup()
-//   markers.leafletElement.addLayer(L.marker(getRandomLatLng(map.leafletElement)))
-// }, [])
-  
-
-
-  
-  
-
-
-  
+  // 위치 추적하기
   useEffect(() => {
-
      navigator.geolocation.getCurrentPosition(
     (position) => {
       setLat(position.coords.latitude)
@@ -167,12 +118,12 @@ const LeafletMapComponent = ()=> {
     },
     (position)=>{
 
+      console.log('geolocation 1차 시도 실패')
 
-  console.log('geolocation 1차 시도 실패')
-  return Modal.warning({
+      return Modal.warning({
       content: '새로고침 해주세요.',
       centered: true
-  })
+      })
   axios.get('https://ipapi.co/json')
     .then((response)=>{
       console.log(response.data.latitude, response.data.longitude)
@@ -182,23 +133,12 @@ const LeafletMapComponent = ()=> {
       setLng(position.coords.longitude)
       setHaveUsersLocation(true)
       setCurrentPos([position.coords.latitude, position.coords.longitude])
-
-      
     },{timeout:5000})
     }
     , [countCloud] );
   },[])
     
-
-  
-  // useEffect(() => {
-  //   setZoom(13)
-  // }, [haveUsersLocation])
-
-  // useEffect(() => {
-  //   console.log(lat, lng)  
-  // }, [lat,lng])
-    
+  // 구름 추가 이후
   useEffect(() => {
   if(addLeafDone){
     setContent('')
@@ -217,10 +157,8 @@ const LeafletMapComponent = ()=> {
   console.log(`content:${content}`)
   },[content])
 
+  // 화면에 구름생성
   const makeLeafOnScreen = useCallback(()=>{
-    // if(countCloud ===1){
-    //   return
-    // }
   const map = mapRef.current
   const marker = L.marker(currentPos,{icon:myIconOpacity, draggable:true})
   marker.addTo(map.leafletElement)
@@ -230,31 +168,20 @@ const LeafletMapComponent = ()=> {
   setLng(newPos.lng)  
   })
   marker.bindPopup(`..`,{closeButton:false})
-  
-  console.log(marker)
-
-
- 
-
   setCountCloud(countCloud+1)
   console.log(`지금 구름 갯수는 ${countCloud}개입니다.`)
-
-  
-
 },[currentPos, content])
 
-const flyScreen = useCallback(()=>{
+  // 현위치로 이동
+  const flyScreen = useCallback(()=>{
   const map = mapRef.current
   map.leafletElement.flyTo(currentPos,16)
-  
   const marker = L.marker(currentPos,{icon:myFixedIcon})
   marker.addTo(map.leafletElement)
-
-  
-  
 },[currentPos])
 
-const submitLeaf = useCallback(()=>{
+  // dispatch: 구름생성
+  const submitLeaf = useCallback(()=>{
   if (!content || !content.trim()) {
     return 
   }
@@ -269,15 +196,16 @@ const submitLeaf = useCallback(()=>{
   })
 })
 
-const showDrawer = useCallback(()=>{
+  const showDrawer = useCallback(()=>{
   setVisible(!visible)
-},[visible])
+  },[visible])
 
-const closeDrawer = useCallback(()=>{
+  const closeDrawer = useCallback(()=>{
   setVisible(false);
-},[])
+  },[])
 
-const goToPost = useCallback((leaf)=>()=>{
+  // 타임라인으로 이동
+  const goToPost = useCallback((leaf)=>()=>{
   dispatch({
     type:LOAD_POST_REQUEST,
     data: leaf.id
@@ -285,15 +213,12 @@ const goToPost = useCallback((leaf)=>()=>{
   Router.push(`/post/${leaf.id}`)
 })
 
-const [wantMyLeaf, setWantMyLeaf] = useState(false)
-
-const loadMyLeaf = useCallback(()=>{
-
-  
-  console.log(wantMyLeaf)
+  // 내 구름만 보기
+  const [wantMyLeaf, setWantMyLeaf] = useState(false)
+  const loadMyLeaf = useCallback(()=>{
 
   if(wantMyLeaf === false){
-    console.log('내꺼만 부를게')
+    console.log('내 구름')
     setWantMyLeaf(!wantMyLeaf)
      dispatch({
       type: LOAD_MY_LEAFS_REQUEST,
@@ -301,12 +226,11 @@ const loadMyLeaf = useCallback(()=>{
     })
       
   } else{
-    console.log('남의것도 보여줘')
+    console.log('모든 구름')
     setWantMyLeaf(!wantMyLeaf)
      dispatch({
       type:LOAD_LEAFS_REQUEST
     })
-    
   }
   
 
@@ -314,7 +238,7 @@ const loadMyLeaf = useCallback(()=>{
 },[wantMyLeaf])
 
     return (
-<>
+          <>
           <MapStyled 
           className="markercluster-map"
           center={currentPos} 
@@ -322,65 +246,40 @@ const loadMyLeaf = useCallback(()=>{
           ref={mapRef} 
           zoomControl={false} 
           >
-          <TileLayer
-            // attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            // url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-            url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
-            // url='https://firms.modaps.eosdis.nasa.gov/wms/viirs'
-
-          />
+            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
           
-          <MarkerClusterGroup
->
-          {leafs.length > 0  
-          ? leafs.map((leaf,index)=> 
-          (
-            
-            
-            <Marker 
-          position={[leaf.lat, leaf.lng]}
-          icon={myIcon}
-          // draggable={true}
-          opacity={0.9}
-          key={leaf.id}
-          ref={markerRef}
-          >
-              <Popup key={index} leaf={leaf} closeButton={false}>
-                {/* <span>{leaf.content}</span>
-                <br /> */}
-                {/* <span style={{color:'blue'}}></span> */}
-                
-                {/* <ImagesZoom images={leaf.Images} /> */}
-                {leaf.Images.length !== 0 ? 
-                <>
-                
-                <a onClick={goToPost(leaf)}>
-                  <img 
-                  src={`${leaf.Images[0]?.src}`} 
-                  style={{width:'100px'}}
-                  ></img>
-                </a>
-                
-                </>
+              <MarkerClusterGroup>
+              {leafs.length > 0  
+              ? leafs.map((leaf,index)=> 
+              (<Marker 
+                position={[leaf.lat, leaf.lng]}
+                icon={myIcon}
+                opacity={0.9}
+                key={leaf.id}
+                ref={markerRef}
+                >
+                  <Popup key={index} leaf={leaf} closeButton={false}>
+                  {leaf.Images.length !== 0 
+                  ? 
+                    <>                
+                      <a onClick={goToPost(leaf)}>
+                        <img 
+                        src={`${leaf.Images[0]?.src}`} 
+                        style={{width:'100px'}}
+                        ></img>
+                      </a>                
+                    </>
                   : null
-                }
-                
-                {/* <Button onClick = {removeLeaf}>삭제</Button> */}
-              </Popup>
-          </Marker>   
+                  }
+                </Popup>
+                </Marker>   
+              ))
+              : "" 
+              }
+              </MarkerClusterGroup>
+          </MapStyled>
 
-
-
-          ))
-
-          
-          : "" 
-          
-          }
-          </MarkerClusterGroup>
-          
-      </MapStyled>
-
+        {/* 구름생성버튼 */}
         <Button 
         onClick={showDrawer} 
         style={{
@@ -390,10 +289,10 @@ const loadMyLeaf = useCallback(()=>{
           opacity:'.7'}}
         shape={'round'}
         icon={<CloudOutlined/>}
-        // type="primary"
         >구름이</Button>
+
+        {/* 구름 생성창 */}
         <Drawer
-        // title="구름이 생성기"
         placement="top"
         closable={true}
         onClose={closeDrawer}
@@ -402,7 +301,6 @@ const loadMyLeaf = useCallback(()=>{
         mask={false}
         keyboard={true}
         closable={false}
-        // style={{opacity:'0.9'}}
         >
           <LeafPostForm 
           submitLeaf={submitLeaf} 
@@ -411,26 +309,24 @@ const loadMyLeaf = useCallback(()=>{
           makeLeafOnScreen={makeLeafOnScreen} 
           content={content}
           closeDrawer={closeDrawer}  
-          
           />
-          
         </Drawer>
 
+        {/* 현위치로 이동 버튼 */}
         <Button
         style={{
           position:'fixed', 
           bottom:'10px', right:240, zIndex:999,
-          
           boxShadow:'2px 2px 5px rgba(0, 0, 0, .2)',
           opacity:'.7'
         }}
         onClick={flyScreen}
         icon={<AimOutlined />}
         shape={'round'}
-        >
-          현위치
+        >현위치
         </Button>
 
+        {/* 내 구름만 버튼 */}
         <Button
         style={{
           position:'fixed', 
@@ -441,10 +337,8 @@ const loadMyLeaf = useCallback(()=>{
         onClick={loadMyLeaf}
         icon={<SmileOutlined />}
         shape={'round'}
-        >
-          스위치
+        >스위치
         </Button>
-   
 </>
 
      )}

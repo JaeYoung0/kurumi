@@ -67,7 +67,7 @@ const UserProfile = () => {
 
   const [modalVisible, setModalVisible] = useState(false)
   const dispatch = useDispatch();
-  const { me, logOutIng,updateAvatarDone } = useSelector((state) => state.user);
+  const { me,updateAvatarDone } = useSelector((state) => state.user);
   const { imagePaths } = useSelector((state) => state.post);
   
   const onLogOut = useCallback(() => {
@@ -128,7 +128,6 @@ if(followerError || followingError){
     <Card
     style={{ boxShadow:'5px 5px 5px rgba(0, 0, 0, .2)', 
     borderRadius:'3px',
-    // marginTop:'30px'
     }}
     actions={[
         <div key="twit">
@@ -173,40 +172,33 @@ if(followerError || followingError){
                   </span>}
       />
       
-      <NicknameEditForm />
-      
-      {/* <Button>
-        프로필 편집
-      </Button> */}
-      {/* <Button onClick={onLogOut} loading={logOutIng}>
-        로그아웃
-      </Button> */}
+      <NicknameEditForm />      
     </Card>
 
 
       {/* 프로필 바꾸기 모달창 */}
       <Modal
-      width={200}
-      bodyStyle={{display:'flex', justifyContent:'center'}}
-      centered={true}
-      visible={modalVisible}
-      closable= {false}
-      footer={[
-            <Button key="back" onClick={handleCancel}>
-              취소
-            </Button>,
-            <Button key="submit" type="primary" onClick={updateAvatar}>
-              저장
-            </Button>,
-          ]}
+        width={200}
+        bodyStyle={{display:'flex', justifyContent:'center'}}
+        centered={true}
+        visible={modalVisible}
+        closable= {false}
+        footer={[
+              <Button key="back" onClick={handleCancel}>
+                취소
+              </Button>,
+              <Button key="submit" type="primary" onClick={updateAvatar}>
+                저장
+              </Button>,
+               ]}
       
       >
-      <div style={{justifyContent:'center', alignItems:'center'}}>
-        <UploadImages />
-        </div>
-      
+          <div style={{justifyContent:'center', alignItems:'center'}}>
+          <UploadImages />
+          </div>
       </Modal>
-      {/* 팔로잉 드로워 */}
+
+      {/* 팔로잉 목록 */}
       <Drawer
         title={
         <>
@@ -221,20 +213,21 @@ if(followerError || followingError){
         onClose={closeFollowing}
         visible={followingVisible}
       >
-        <FollowList header="팔로잉 목록" data={followingsData} onClickMore={loadMoreFollowings} 
-        loading={!followingsData && !followingError}/>
+          <FollowList 
+            header="팔로잉 목록" 
+            data={followingsData} 
+            onClickMore={loadMoreFollowings} 
+            loading={!followingsData && !followingError}/>
       </Drawer>
 
-      {/* 팔로워 드로워 */}
+      {/* 팔로워 목록 */}
       <Drawer
         title={
-          <>
-          <LeftOutlined 
-          style={{marginRight:'10px'}} 
-          onClick={closeFollower}/>
-          <span>팔로워</span>
-        </>
-        }
+              <>
+                <LeftOutlined style={{marginRight:'10px'}} onClick={closeFollower}/>
+                <span>팔로워</span>
+              </>
+              }
         placement="right"
         closable={false}
         onClose={closeFollower}
@@ -244,24 +237,20 @@ if(followerError || followingError){
         loading={!followersData && !followerError}/>
       </Drawer>
 
-      {/* 포스트 드로워 */}
+      {/* 게시글 목록 */}
       <Drawer
         title={
-          <>
-          <LeftOutlined 
-          style={{marginRight:'10px'}} 
-          onClick={closeStatus}/>
-          <span>게시글</span>
-        </>
-        }
+              <>
+                <LeftOutlined style={{marginRight:'10px'}} onClick={closeStatus}/>
+                <span>게시글</span>
+              </>
+              }
         placement="right"
         closable={false}
         onClose={closeStatus}
         visible={StatusVisible}
       >
-        <Card
-        cover={<img src='../profile_kurumi1.png'/>}
-        >
+        <Card cover={<img src='../profile_kurumi1.png'/>}>
           <Card.Meta 
           title={'Basic 개구름이'}
           description={
@@ -270,7 +259,6 @@ if(followerError || followingError){
           </div>
           }
           />
-
         </Card>
       </Drawer>
     </>
