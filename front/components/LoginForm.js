@@ -38,7 +38,11 @@ border-radius:10px;
 background:white;
 float:right;
 border:none;
-color:black;
+
+`
+
+const ImgStyled = styled.img`
+
 width:17px;
 vertical-align:middle;
 margin-bottom:4px;
@@ -46,16 +50,15 @@ margin-right:5px;
 `
 
 const KakaoButtonStyled = styled(Button)`
+color:black;
 margin-top:10px;
 border-radius:10px;
 background:#FEE500;
 float:right;
 border:none;
-color:black;
-width:15px;
-vertical-align:middle;
-margin-bottom:4px;
-margin-right:5px;
+&:hover {
+    background:#FEE500;
+  }
 `
 
 const LoginForm = () => {
@@ -120,29 +123,18 @@ const LoginForm = () => {
 
       <ButtonWrapper>
           <a href={`${backUrl}/auth/google`}>
-            <Button
-              icon={<img src='../googleLogin.png'/>}
-              style={{
-                marginTop:'10px',
-                borderRadius:'10px',
-                background:'white',
-                float:'right',
-                border:'none',
-                color:'black',
-                width:'17px',
-                verticalAlign:'middle',
-                marginBottom:'4px',
-                marginRight:'5px'
-                
-              }}
+            <GoogleButtonStyled
+              icon={<ImgStyled src='../googleLogin.png'/>}
+              
               >구글 로그인
-            </Button>
+            </GoogleButtonStyled>
           </a>  
 
           <a href={`${backUrl}/auth/kakao`}>
             <KakaoButtonStyled
-              type="primary"          
-              icon={<img src='../kakao.png'/>}
+              // type="primary"
+              // ghost          
+              icon={<ImgStyled src='../kakao.png'/>}
               >카카오 로그인
             </KakaoButtonStyled>
           </a>
