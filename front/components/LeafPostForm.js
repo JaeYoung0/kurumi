@@ -63,7 +63,7 @@ const LeafPostForm = ({makeLeafOnScreen, content, setContent, submitLeaf,closeDr
             value={content}
             onChange={onChangecontent}
             maxLength={140}
-            placeholder="감상을 공유해주세요"  
+            placeholder="현위치 > 사진 업로드 > 구름생성 > 구름저장 순으로 작성해주세요."  
           />
     
           <UploadImages />
