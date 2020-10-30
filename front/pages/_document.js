@@ -45,11 +45,11 @@ export default class MyDocument extends Document {
           <NextScript />
           <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated" />
           <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-        <script>
-        Kakao.init(`d1d1666eac47faa6c1c3ec72b9114b8f`);
-        console.log(Kakao.isInitialized());
-        </script>
-        </body>
+          <script>
+            Kakao.init(`d1d1666eac47faa6c1c3ec72b9114b8f`);
+            console.log(Kakao.isInitialized());
+          </script>
+          </body>
       </Html>
     );
   }

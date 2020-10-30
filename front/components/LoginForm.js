@@ -79,6 +79,10 @@ const LoginForm = () => {
   }, [logInError]);
 
   return (
+    <div>
+
+
+    
     <FormStyled onFinish={onSubmitForm}>
       <div>
         <InputStyled
@@ -138,9 +142,15 @@ const LoginForm = () => {
               >카카오 로그인
             </KakaoButtonStyled>
           </a>
+
       </ButtonWrapper>
       
+      
+      <div style={{padding:'30px 10px', color:'gray', textAlign:'center', fontSize:'0.5em'}}>본 웹사이트는 구글 크롬, 모바일에 최적화되어 있습니다.</div>  
     </FormStyled>
+    
+    </div>
+    
   );
 };
 
