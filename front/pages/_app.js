@@ -13,7 +13,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import 'react-leaflet-markercluster/dist/styles.min.css'
 
-const NodeBird = ({ Component }) => {
+const Kurumi = ({ Component }) => {
   
   return (
     <>
@@ -25,9 +25,9 @@ const NodeBird = ({ Component }) => {
   );
 };
 
-NodeBird.propTypes = {
+Kurumi.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
 
 // wrapper.withRedux라는 HOC로 감싸준 덕분에 <Provider store={store}>같은걸로 또 감싸줄 필요가 없다
-export default wrapper.withRedux(NodeBird);
+export default wrapper.withRedux(Kurumi);

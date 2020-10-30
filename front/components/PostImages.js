@@ -25,8 +25,8 @@ const PostImages = ({ images }) => {
             key={v.id}
             style={{width:'100%'}}
             role="presentation"
-            src={`${v.src}`}
-            alt={`${v.src}`}
+            src={`${v.src.replace(/\/thumb\//, '/original/')}`}
+            alt={`${v.src.replace(/\/thumb\//, '/original/')}`}
             />                  
         )}
                             
