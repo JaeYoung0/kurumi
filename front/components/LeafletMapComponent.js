@@ -14,7 +14,7 @@ import {LOAD_POST_REQUEST} from '../reducers/post'
 import Router from 'next/router'
 import { SearchControl,OpenStreetMapProvider } from 'leaflet-geosearch';
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import Image from 'next/image'
+// import Image from 'next/image'
 
 const MapStyled = styled(Map)`
 height: 100vh;
@@ -254,7 +254,7 @@ const LeafletMapComponent = ()=> {
                   ? 
                     <>                
                       <a onClick={goToPost(leaf)}>
-                        <Image 
+                        <img 
                         src={`${leaf.Images[0]?.src.replace(/\/thumb\//, '/original/')}`} 
                         style={{width:'100px'}}
                         />
