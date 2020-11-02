@@ -3,5 +3,5 @@
 }
 
 .slick-slider {
-  touch-action: auto;
+  touch-action: auto!important;
 }
