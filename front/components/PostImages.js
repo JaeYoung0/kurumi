@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
+import Image from 'next/image'
 import styled from 'styled-components'
 
 
@@ -21,10 +22,10 @@ const PostImages = ({ images }) => {
           arrows={false}
         >
         {images.map((v)=>
-          <img
+          <Image
             key={v.id}
-            style={{width:'100%'}}
-            role="presentation"
+            // style={{width:'100%'}}
+            // role="presentation"
             src={`${v.src.replace(/\/thumb\//, '/original/')}`}
             alt={`${v.src.replace(/\/thumb\//, '/original/')}`}
             />                  
