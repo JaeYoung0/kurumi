@@ -124,16 +124,6 @@ const LeafletMapComponent = ()=> {
       content: '새로고침 해주세요.',
       centered: true
       })
-  axios.get('https://ipapi.co/json')
-    .then((response)=>{
-      console.log(response.data.latitude, response.data.longitude)
-      setLat(response.data.latitude)
-      setLng(response.data.longitude)
-      setLat(position.coords.latitude)
-      setLng(position.coords.longitude)
-      setHaveUsersLocation(true)
-      setCurrentPos([position.coords.latitude, position.coords.longitude])
-    },{timeout:5000})
     }
     , [countCloud] );
   },[])
@@ -264,7 +254,7 @@ const LeafletMapComponent = ()=> {
                     <>                
                       <a onClick={goToPost(leaf)}>
                         <img 
-                        src={`${leaf.Images[0]?.src}`} 
+                        src={`${leaf.Images[0]?.src.replace(/\/thumb\//, '/original/')}`} 
                         style={{width:'100px'}}
                         ></img>
                       </a>                
