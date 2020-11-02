@@ -4,12 +4,16 @@ import Slider from "react-slick";
 // import Image from 'next/image'
 import styled from 'styled-components'
 
-
+const DivStyled = styled.div`
+.slick-slider{
+  touch-action: auto, 
+}
+`
 
 const PostImages = ({ images }) => {  
 
     return (
-      <>
+      <DivStyled>
         <Slider
           adaptiveHeight={true}
           dots={true}
@@ -33,7 +37,7 @@ const PostImages = ({ images }) => {
         )}
                             
         </Slider>
-      </>
+      </DivStyled>
     );
   }
 
