@@ -31,7 +31,7 @@ const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
     </sitemapindex>
   `;
 
-  const formattedSitemap = [formatted(sitemap)];
+  const formattedSitemap = formatted(sitemap);
 
   fs.writeFileSync("./public/sitemap.xml", formattedSitemap, "utf8");
 })();
