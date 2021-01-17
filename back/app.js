@@ -38,7 +38,7 @@ app.use(helmet({contentSecurityPolicy:false}))
 // cors피해가기 위해서 cors미들웨어 장착
 app.use(
   cors({
-    origin: ["https://ipapi.co/json","https://kurum2.com"], 
+    origin: ["https://ipapi.co/json","https://kurum2.com", "https://localhost:3060"], 
     credentials: true,
   })
 );

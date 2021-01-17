@@ -75,7 +75,7 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
           return
         } else if (req.body.imagePaths.length > 1) {
           // 이미지를 여러개 올리면 image: [제로초.png, 부기초.png]
-          console.log(`tttttttttt여러개:${req.body.imagePaths.map((v)=>console.log(v.image[0]))}`)    
+          
           const images = await Promise.all(
             req.body.imagePaths.map((v) => Image.create({ src: v.image[0]}))
           );
@@ -83,7 +83,7 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
           await leaf.addImages(images);
         }  else {
           //이미지를 하나만 올리면 image: 제로초.png
-          console.log(`ttttttttt1개${req.body.imagePaths[0].image[0]}`)
+          
           const image = await Image.create({ src: req.body.imagePaths[0].image[0]});
           await leaf.addImages(image);
         } 
@@ -110,7 +110,7 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
           }
         ],
       });
-      console.log(`fullLeafffffffffff${fullLeafs}`)
+      
   
       res.status(201).json(fullLeafs); //model에 저장한 post를 프론트로 보내줌
     } catch (error) {

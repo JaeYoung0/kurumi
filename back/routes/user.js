@@ -45,7 +45,7 @@ router.post("/", isNotLoggedIn, upload.none(),async (req, res, next) => {
 
     if (req.body.image) {
         //이미지를 하나만 올리면 image: 제로초.png
-        console.log(`ttttttttt1개${req.body.image}`)
+        
         const image = await Image.create({ src: req.body.image, UserId:user.id});
       
     }
@@ -168,7 +168,7 @@ router.patch("/nickname", isLoggedIn, async (req, res, next) => {
 //PATCH /user/image
 router.patch('/image', isLoggedIn, async (req, res, next) => {
   try {
-    console.log(`update avatar bodyyyyyyyy:${JSON.stringify(req.body)}`)
+    
     await Image.update(
       {
         src: req.body.avatar,

@@ -64,7 +64,7 @@ router.post("/images", upload.array("image"), (req, res, next) => {
 //POST /post
 router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
   try {
-    console.log(`post할때 req.body.imagedddddddd${req.body.image}`)
+    
     const hashtags = req.body.content.match(/#[^\s#]+/g);
     const post = await Post.create({
       content: req.body.content,
@@ -191,10 +191,7 @@ router.delete("/:postId", isLoggedIn, async (req, res, next) => {
 router.patch("/:postId", isLoggedIn,upload.none(), async (req, res, next) => {
   
   try {
-    console.log(`req.bodyyyyyyyyy${JSON.stringify(req.body)}`)
-    console.log(`req.body.contentttttttttt${req.body.content}`)
-    console.log(`req.params.postIddddddddd${req.params.postId}`)
-    console.log(`req.body.imageeeeeeeeeee${JSON.stringify(req.body.image)}`)
+    
     const post = await Post.findOne({
       where: { id: req.body.postId },
     });
@@ -305,7 +302,7 @@ router.patch("/:postId", isLoggedIn,upload.none(), async (req, res, next) => {
     const images = await Image.findAll({
       where: {PostId: parseInt(req.params.postId)}
     })
-    console.log(`Imagessssssss${images}`)
+    
 
     
 
@@ -368,8 +365,7 @@ router.post("/:postId/comment", isLoggedIn, async (req, res, next) => {
 //DELETE /post/comment/1
 router.delete('/:postId/comment/:commentId', isLoggedIn, async(req,res,next)=>{
   try{
-console.log(`00000000000${JSON.stringify(req.params)}`)
-console.log(`00000000000${JSON.stringify(req.params)}`)
+
     const comment = Comment.findOne({
       where:{id:req.params.commentId, UserId: req.user.id }
     })
@@ -394,7 +390,7 @@ next(e)
 //PATCH /post/1/like
 router.patch("/:postId/like", isLoggedIn, async (req, res, next) => {
   try {
-    console.log(`ssssssssssss${req.params.postId}`)
+    
     const post = await Post.findOne({
       where: { id: req.params.postId },
     });
@@ -413,7 +409,7 @@ router.patch("/:postId/like", isLoggedIn, async (req, res, next) => {
 //DELETE /post/1/like
 router.delete("/:postId/like", isLoggedIn, async (req, res, next) => {
   try {
-    console.log(`ssssssssssss${req.params.postId}`)
+    
     const post = await Post.findOne({
       where: { id: req.params.postId },
     });
@@ -433,8 +429,7 @@ router.delete("/:postId/like", isLoggedIn, async (req, res, next) => {
 //PATCH /post/1/comment/1/like
 router.patch("/:postId/comment/:commentId/like", isLoggedIn, async (req, res, next) => {
   try {
-    console.log(`add commentIdddddddd${req.params.commentId}`)
-    console.log(`add comment...postIdddddddd${req.params.postId}`)
+    
     const comment = await Comment.findOne({
       where: { id: req.params.commentId },
     });
@@ -453,8 +448,8 @@ router.patch("/:postId/comment/:commentId/like", isLoggedIn, async (req, res, ne
 //DELETE /post/1/comment/1/like
 router.delete("/:postId/comment/:commentId/like", isLoggedIn, async (req, res, next) => {
   try {
-    console.log(`delete commentIdddddddd${req.params.commentId}`)
-    console.log(`delete comment...postIdddddddd${req.params.postId}`)
+    
+    
     const comment = await Comment.findOne({
       where: { id: req.params.commentId },
     });
