@@ -36,7 +36,13 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head/>
+        <Head>
+          <meta property="og:site_name" content="구름이" />
+          <meta name="description" content="하루에 한 번은 하늘을 올려다보세요, 구름 아카이빙, 구름이, 구름지도" />
+          <meta property="og:url" content="https://kurum2.com" />
+          <meta property="og:title" content="구름 아카이빙, 구름이" />
+          <meta property="og:description" content="하루에 한 번은 하늘을 올려다보세요, 구름 아카이빙, 구름이, 구름지도" />
+        </Head>
         
         
         <body>
