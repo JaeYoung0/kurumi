@@ -108,7 +108,8 @@ const LoginForm = () => {
         />
       </div>
 
-      <ButtonWrapper>
+{/* 일단 숨김 */}
+      {/* <ButtonWrapper>
 
         <Link href="/signup">
           <a>
@@ -123,7 +124,7 @@ const LoginForm = () => {
           로그인
         </Button>
 
-      </ButtonWrapper>
+      </ButtonWrapper> */}
 
       <ButtonWrapper>
           <a href={`${backUrl}/auth/google`}>
