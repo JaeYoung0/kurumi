@@ -99,6 +99,7 @@ const LoginForm = () => {
 
       <div>
         <InputStyled
+          type="password"
           name="user-password"
           size='large'
           value={password}
@@ -147,7 +148,7 @@ const LoginForm = () => {
       </ButtonWrapper>
       
       
-      <div style={{padding:'30px 10px', color:'gray', textAlign:'center', fontSize:'0.8em'}}>구글 크롬, 모바일에 최적화되어 있습니다.</div>  
+      <div style={{padding:'30px 10px 0px 10px', color:'gray', textAlign:'center', fontSize:'0.8em'}}>구글 크롬, 모바일에 최적화되어 있습니다.</div>  
     </FormStyled>
     
     </div>

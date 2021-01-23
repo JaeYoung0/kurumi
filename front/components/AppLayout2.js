@@ -181,7 +181,7 @@ Router.push(`/hashtag/${searchInput}`)
                   </Menu.Item>
 
                   <Menu.Item>
-                    <div style={{textAlign:'center'}}>베타버전입니다.</div>
+                    <div style={{textAlign:'center'}}>Version 2.0.0</div>
                   </Menu.Item>
 
 
@@ -199,7 +199,7 @@ Router.push(`/hashtag/${searchInput}`)
                 <Col xs={24} sm={24} md={24} lg={24}>
                   <LoginForm />
                   <div style={{display:'flex', justifyContent:'center'}}>
-                  <img src='images/loginbot.png' width='250px' />
+                  <img src='images/loginbot.png' width='300px' />
                   </div>
                 </Col>
               }

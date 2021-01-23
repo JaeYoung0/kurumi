@@ -180,7 +180,7 @@ const AppLayout = ({ children }) => {
                   </Menu.Item>
 
                   <Menu.Item>
-                    <div style={{textAlign:'center'}}>베타버전입니다.</div>
+                    <div style={{textAlign:'center'}}>Version 2.0.0</div>
                   </Menu.Item>
 
 
