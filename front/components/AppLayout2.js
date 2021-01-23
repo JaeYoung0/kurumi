@@ -22,7 +22,7 @@ const RowStyled = styled(Row)`
 background: white;
 display: flex;
 justify-content: space-between;
-align-items:'center';
+align-items: center;
 padding:15px 20px;
 border: 1px solid #DBDBDB;
 height:80px;
@@ -81,16 +81,7 @@ Router.push(`/hashtag/${searchInput}`)
     <>
     <Layout style={{ minHeight: '100vh' }}>
         <RowStyled>
-          <Col>
-            <Link href='/' replace>
-              <a>
-              <img src="../happy.png" alt="nav__icon" style={{width:'40px'}}/>
-              <img src="../makes.png" alt="nav__icon" style={{width:'80px', marginLeft:'16px'}}/>
-              </a>
-            </Link>
-          </Col>
-          
-          <Col>
+        <Col>
             <Button 
             onClick={onShowMenu} 
             style={{
@@ -98,8 +89,24 @@ Router.push(`/hashtag/${searchInput}`)
               }}>
             <MenuOutlined style={{color:'#2C57A5', fontSize:'25px'}}/>
             </Button>
+            <Link href='/' replace>
+              <a>
+              <img src="../happy.png" alt="nav__icon" style={{width:'40px'}}/>
+              <img src="../makes.png" alt="nav__icon" style={{width:'80px', marginLeft:'16px'}}/>
+              </a>
+            </Link>
           </Col>
-
+          <Col>
+        
+          <Link href='/leafletmap' replace>
+              <a style={{color:'#2C57A5', 
+              fontWeight:'bold',
+               fontSize:'15px', padding:'10px 20px'}}>
+                구름지도
+              </a>
+            </Link>
+          </Col>
+          
             <Drawer
             placement="left"
             closable={false}
@@ -191,6 +198,9 @@ Router.push(`/hashtag/${searchInput}`)
               {me ? null : 
                 <Col xs={24} sm={24} md={24} lg={24}>
                   <LoginForm />
+                  <div style={{display:'flex', justifyContent:'center'}}>
+                  <img src='images/loginbot.png' width='250px' />
+                  </div>
                 </Col>
               }
                 <Col xs={24} sm={24} md={24} lg={24} style={{padding:0}}>

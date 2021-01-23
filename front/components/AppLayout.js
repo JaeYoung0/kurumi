@@ -22,7 +22,7 @@ const RowStyled = styled(Row)`
 background: white;
 display: flex;
 justify-content: space-between;
-align-items:'center';
+align-items: center;
 padding:15px 20px;
 border: 1px solid #DBDBDB;
 height:80px;
@@ -83,24 +83,31 @@ const AppLayout = ({ children }) => {
     <>
     <Layout style={{ minHeight: '100vh'}}>
           <RowStyled>
-            <Col>
-              <Link href='/' replace>
+          <Col>
+            <Button 
+            onClick={onShowMenu} 
+            style={{
+              border:'1px white solid', 
+              }}>
+            <MenuOutlined style={{color:'#2C57A5', fontSize:'25px'}}/>
+            </Button>
+            <Link href='/' replace>
               <a>
-              <img src="happy.png" alt="nav__icon" style={{width:'40px'}}/>
-              <img src="makes.png" alt="nav__icon" style={{width:'80px', marginLeft:'16px'}}/>
+              <img src="../happy.png" alt="nav__icon" style={{width:'40px'}}/>
+              <img src="../makes.png" alt="nav__icon" style={{width:'80px', marginLeft:'16px'}}/>
               </a>
-              </Link>
-            </Col>
-            
-            <Col>
-              <Button 
-              onClick={onShowMenu} 
-              style={{
-                border:'1px white solid', 
-                }}>
-              <MenuOutlined style={{color:'#2C57A5', fontSize:'25px'}}/>
-              </Button>
-            </Col>
+            </Link>
+          </Col>
+          <Col>
+        
+          <Link href='/leafletmap' replace>
+              <a style={{color:'#2C57A5', 
+              fontWeight:'bold',
+               fontSize:'15px', padding:'10px 20px'}}>
+                구름지도
+              </a>
+            </Link>
+          </Col>
 
           <Drawer
           placement="left"
@@ -189,12 +196,13 @@ const AppLayout = ({ children }) => {
           <Content>            
             <div className="site-layout-background" style={{ padding: 0, minHeight: 360 , background: '#F0F2F5'}}>            
             <Row gutter={50} >
-              <Col xs={24} sm={24} md={24} lg={8}>
+              {/* <Col xs={24} sm={24} md={24} lg={8}>
                 {me ? <UserProfile /> : <LoginForm />}
-              </Col>
+              </Col> */}
               <Col xs={24} sm={24} md={24} lg={16}>
                 {children}
               </Col>
+              
             </Row>              
             </div>
           </Content>       
